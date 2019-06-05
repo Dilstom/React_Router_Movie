@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import './savedList.css';
 
 export default class SavedList extends Component {
  constructor(props) {
@@ -11,9 +12,14 @@ export default class SavedList extends Component {
    <div className="saved-list">
     <h3>Saved Movies:</h3>
     {this.props.list.map(movie => (
-     <Link to={`/movie/${movie.id}`} key={movie.id}>
+     <NavLink
+      exact
+      to={`/movie/${movie.id}`}
+      activeClassName="toggleLinkCss"
+      key={movie.id + Math.random(Date.now())}
+     >
       <span className="saved-movie">{movie.title}</span>
-     </Link>
+     </NavLink>
     ))}
     <Link to="/">
      <div className="home-button">Home</div>
